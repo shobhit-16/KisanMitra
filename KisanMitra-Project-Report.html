@@ -674,33 +674,6 @@
             flex-wrap: wrap;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .btn-primary {
-            background: var(--gold);
-            color: var(--text-primary);
-        }
-
-        .btn-primary:hover { background: #f5b825; transform: translateY(-1px); }
-
-        .btn-outline {
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255,255,255,0.5);
-        }
-
-        .btn-outline:hover { border-color: white; }
-
         /* ===== PAGE BREAK ===== */
         /* (page-break class reserved for future print use) */
 
@@ -742,19 +715,6 @@
             flex-direction: column;
         }
 
-        .demo-screen-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            cursor: pointer;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
-        }
-
-        .demo-screen-link:hover .demo-screen {
-            box-shadow: 0 8px 24px rgba(46,125,50,0.2);
-            transform: translateY(-2px);
-            border-color: var(--green-400);
-        }
 
         .demo-screen-header {
             background: linear-gradient(135deg, var(--green-700), var(--green-800));
@@ -849,7 +809,7 @@
             </div>
             <div class="meta-card">
                 <div class="label">Repository</div>
-                <div class="value"><a href="https://github.com/shobhit-16/KisanMitra" style="color: var(--green-700);">GitHub</a></div>
+                <div class="value" style="font-size:12px; word-break:break-all;">https://github.com/shobhit-16/KisanMitra</div>
             </div>
         </div>
 
@@ -918,67 +878,59 @@
         </p>
 
         <div class="demo-grid">
-            <a href="demo.html" target="_blank" class="demo-screen-link">
-                <div class="demo-screen">
-                    <div class="demo-screen-header">S1 — Language</div>
-                    <div class="demo-screen-body">
-                        <div style="text-align:center; margin-bottom:8px;">
-                            <div style="font-size:20px;">🌾</div>
-                            <div style="font-size:8px; font-weight:700; color:var(--green-800);">KisanMitra</div>
-                        </div>
-                        <div class="demo-chip green" style="justify-content:center;">English</div>
-                        <div class="demo-chip green" style="justify-content:center;">हिंदी</div>
-                        <div class="demo-chip green" style="justify-content:center;">मराठी</div>
+            <div class="demo-screen">
+                <div class="demo-screen-header">S1 — Language</div>
+                <div class="demo-screen-body">
+                    <div style="text-align:center; margin-bottom:8px;">
+                        <div style="font-size:20px;">🌾</div>
+                        <div style="font-size:8px; font-weight:700; color:var(--green-800);">KisanMitra</div>
+                    </div>
+                    <div class="demo-chip green" style="justify-content:center;">English</div>
+                    <div class="demo-chip green" style="justify-content:center;">हिंदी</div>
+                    <div class="demo-chip green" style="justify-content:center;">मराठी</div>
+                </div>
+            </div>
+            <div class="demo-screen">
+                <div class="demo-screen-header">S2 — Dashboard</div>
+                <div class="demo-screen-body">
+                    <div style="font-size:9px; font-weight:700; color:var(--green-900);">Namaste, Rambhau</div>
+                    <div class="demo-chip green"><span style="font-size:8px;">🌾</span> Rabi Onion</div>
+                    <div class="demo-chip gold"><span style="font-size:8px;">📅</span> 47 days to harvest</div>
+                    <div class="demo-bar"><div class="demo-bar-fill" style="width:65%"></div></div>
+                    <div class="demo-icon-grid">
+                        <div class="demo-icon">📋</div>
+                        <div class="demo-icon">📊</div>
+                        <div class="demo-icon">💰</div>
+                        <div class="demo-icon">🏥</div>
+                        <div class="demo-icon">📖</div>
+                        <div class="demo-icon">⚙️</div>
                     </div>
                 </div>
-            </a>
-            <a href="demo.html" target="_blank" class="demo-screen-link">
-                <div class="demo-screen">
-                    <div class="demo-screen-header">S2 — Dashboard</div>
-                    <div class="demo-screen-body">
-                        <div style="font-size:9px; font-weight:700; color:var(--green-900);">Namaste, Rambhau</div>
-                        <div class="demo-chip green"><span style="font-size:8px;">🌾</span> Rabi Onion</div>
-                        <div class="demo-chip gold"><span style="font-size:8px;">📅</span> 47 days to harvest</div>
-                        <div class="demo-bar"><div class="demo-bar-fill" style="width:65%"></div></div>
-                        <div class="demo-icon-grid">
-                            <div class="demo-icon">📋</div>
-                            <div class="demo-icon">📊</div>
-                            <div class="demo-icon">💰</div>
-                            <div class="demo-icon">🏥</div>
-                            <div class="demo-icon">📖</div>
-                            <div class="demo-icon">⚙️</div>
-                        </div>
+            </div>
+            <div class="demo-screen">
+                <div class="demo-screen-header">S4 — Mandi Prices</div>
+                <div class="demo-screen-body">
+                    <div style="font-size:10px; font-weight:700; color:var(--green-900);">Today's Onion Price</div>
+                    <div style="font-size:18px; font-weight:900; color:var(--green-800);">₹28/q</div>
+                    <div class="demo-chip gold"><span style="font-size:8px;">↑</span> +8% this week</div>
+                    <div style="font-size:8px; color:var(--text-secondary); margin-top:4px;">vs MSP ₹7.50/kg</div>
+                    <div class="demo-chip green"><span style="font-size:8px;">✓</span> +₹20.50 above floor</div>
+                </div>
+            </div>
+            <div class="demo-screen">
+                <div class="demo-screen-header">S5 — Sell or Store?</div>
+                <div class="demo-screen-body">
+                    <div style="font-size:9px; font-weight:600;">5 quintal @ ₹28/q</div>
+                    <div class="demo-chip gold"><span style="font-size:8px;">📦</span> Storage 2 months</div>
+                    <div style="font-size:8px; color:var(--text-secondary);">Storage: ₹160<br>Expected gain: ₹875<br>Net: <strong style="color:var(--green-800);">₹715</strong></div>
+                    <div style="background:var(--green-100); border-radius:6px; padding:6px; text-align:center; margin-top:4px;">
+                        <div style="font-size:9px; font-weight:700; color:var(--green-900);">STORE VIABLE</div>
                     </div>
                 </div>
-            </a>
-            <a href="demo.html" target="_blank" class="demo-screen-link">
-                <div class="demo-screen">
-                    <div class="demo-screen-header">S4 — Mandi Prices</div>
-                    <div class="demo-screen-body">
-                        <div style="font-size:10px; font-weight:700; color:var(--green-900);">Today's Onion Price</div>
-                        <div style="font-size:18px; font-weight:900; color:var(--green-800);">₹28/q</div>
-                        <div class="demo-chip gold"><span style="font-size:8px;">↑</span> +8% this week</div>
-                        <div style="font-size:8px; color:var(--text-secondary); margin-top:4px;">vs MSP ₹7.50/kg</div>
-                        <div class="demo-chip green"><span style="font-size:8px;">✓</span> +₹20.50 above floor</div>
-                    </div>
-                </div>
-            </a>
-            <a href="demo.html" target="_blank" class="demo-screen-link">
-                <div class="demo-screen">
-                    <div class="demo-screen-header">S5 — Sell or Store?</div>
-                    <div class="demo-screen-body">
-                        <div style="font-size:9px; font-weight:600;">5 quintal @ ₹28/q</div>
-                        <div class="demo-chip gold"><span style="font-size:8px;">📦</span> Storage 2 months</div>
-                        <div style="font-size:8px; color:var(--text-secondary);">Storage: ₹160<br>Expected gain: ₹875<br>Net: <strong style="color:var(--green-800);">₹715</strong></div>
-                        <div style="background:var(--green-100); border-radius:6px; padding:6px; text-align:center; margin-top:4px;">
-                            <div style="font-size:9px; font-weight:700; color:var(--green-900);">STORE VIABLE</div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+            </div>
         </div>
         <p style="text-align:center; font-size:12px; color:var(--text-secondary); margin-top:12px;">
-            <em>Click any screen to open the interactive prototype →</em>
+            <em>Interactive prototype: demo.html (see project root)</em>
         </p>
 
         <h2>Core User Flows</h2>
@@ -1567,14 +1519,13 @@
         <p>
             Phase 1 is complete and tested. The next step is a pilot with 50–100 farmers<br>in the Nashik onion corridor to validate the product experience and refine the CPE logic.
         </p>
-        <div class="cta-buttons">
-            <a href="https://github.com/shobhit-16/KisanMitra" class="btn btn-primary" target="_blank">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                View on GitHub
-            </a>
-            <a href="https://github.com/shobhit-16/KisanMitra/blob/main/demo.html" class="btn btn-outline" target="_blank">
-                Open the Demo
-            </a>
+        <div style="display:flex; flex-direction:column; gap:12px; align-items:center; margin-top:8px;">
+            <div style="font-size:13px; color:rgba(255,255,255,0.85);">
+                <strong>GitHub Repository:</strong> https://github.com/shobhit-16/KisanMitra
+            </div>
+            <div style="font-size:13px; color:rgba(255,255,255,0.85);">
+                <strong>Demo (project root):</strong> demo.html
+            </div>
         </div>
     </div>
 </div>
