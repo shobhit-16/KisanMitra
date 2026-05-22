@@ -479,6 +479,24 @@
 
         tr:nth-child(even) td { background: var(--green-50); }
 
+        /* ===== CODE ===== */
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            background: var(--green-50);
+            border: 1px solid var(--green-200);
+            border-radius: 5px;
+            padding: 1px 6px;
+            color: var(--green-900);
+            white-space: nowrap;
+        }
+
+        /* Long code snippets wrap nicely */
+        code.wrap {
+            white-space: normal;
+            word-break: break-all;
+        }
+
         /* ===== BULLET LIST ===== */
         .bullet-list {
             list-style: none;
@@ -488,8 +506,10 @@
         .bullet-list li {
             display: flex;
             gap: 12px;
-            padding: 8px 0;
+            padding: 10px 0;
             font-size: 14px;
+            line-height: 1.5;
+            align-items: flex-start;
         }
 
         .bullet-list li::before {
@@ -497,7 +517,7 @@
             color: var(--green-700);
             font-weight: 700;
             flex-shrink: 0;
-            margin-top: 1px;
+            margin-top: 2px;
         }
 
         /* ===== ARCHITECTURE ===== */
@@ -1416,15 +1436,15 @@
 
             <h3>Important Patterns — Read Before Editing</h3>
             <ul class="bullet-list">
-                <li><strong>str, enum.Enum mixin</strong>: <code>ObligationPriority</code> and <code>CashFlowStatus</code> inherit from both <code>str</code> and <code>Enum</code>. Always use <code>.value</code> for serialization — <code>str(priority)</code> returns the repr (e.g., <code>'ObligationPriority.SOON'</code>), not the value.</li>
-                <li><strong>Nexus deduplication</strong>: The Nexus HTTP transport installs <code>RequestDeduplicator</code> middleware that caches POST requests. In tests, pass <code>enable_durability=False</code> to the Nexus constructor to bypass this.</li>
-                <li><strong>CPE output contract</strong>: <code>CPE.evaluate()</code> returns exactly one output — never zero, never more than one. If all recommendations are suppressed, it returns a suppression notification, not an empty result.</li>
-                <li><strong>aiosqlite URI format</strong>: Use <code>file:/absolute/path/to/db.db</code> — not SQLAlchemy URLs. For in-memory: <code>file::memory:?cache=shared&mode=memory</code>.</li>
+                <li><strong>str, enum.Enum mixin</strong>: <code class="wrap">ObligationPriority</code> and <code class="wrap">CashFlowStatus</code> inherit from both <code>str</code> and <code>Enum</code>. Always use <code>.value</code> for serialization — <code class="wrap">str(priority)</code> returns the repr (e.g., <code class="wrap">'ObligationPriority.SOON'</code>), not the value.</li>
+                <li><strong>Nexus deduplication</strong>: The Nexus HTTP transport installs <code class="wrap">RequestDeduplicator</code> middleware that caches POST requests. In tests, pass <code class="wrap">enable_durability=False</code> to the Nexus constructor to bypass this.</li>
+                <li><strong>CPE output contract</strong>: <code class="wrap">CPE.evaluate()</code> returns exactly one output — never zero, never more than one. If all recommendations are suppressed, it returns a suppression notification, not an empty result.</li>
+                <li><strong>aiosqlite URI format</strong>: Use <code class="wrap">file:/absolute/path/to/db.db</code> — not SQLAlchemy URLs. For in-memory: <code class="wrap">file::memory:?cache=shared&mode=memory</code>.</li>
             </ul>
 
             <h3>Running the Tests</h3>
             <p>
-                <code>pytest tests/ -x -q</code> — runs the full suite. All 220 tests must pass before any merge. The integration tests use a real temporary SQLite database per test module. The unit tests use mocks for the bus and gate functions.
+                <code class="wrap">pytest tests/ -x -q</code> — runs the full suite. All 220 tests must pass before any merge. The integration tests use a real temporary SQLite database per test module. The unit tests use mocks for the bus and gate functions.
             </p>
 
             <h3>Demo HTML</h3>
@@ -1434,7 +1454,7 @@
 
             <h3>Known Spec Deviations (Logged)</h3>
             <p>
-                <code>specs/farmer-profile.md</code> originally contained a "Farmer State Machine" section with states <code>NEW/ACTIVE/INACTIVE/LANDED/ACTIVE_WITH_HISTORY</code>. This was spec decoration — no CPE gate used farmer operational state, and no implementation existed. The section was removed in Round 2 of the spec compliance audit.
+                <code class="wrap">specs/farmer-profile.md</code> originally contained a "Farmer State Machine" section with states <code class="wrap">NEW/ACTIVE/INACTIVE/LANDED/ACTIVE_WITH_HISTORY</code>. This was spec decoration — no CPE gate used farmer operational state, and no implementation existed. The section was removed in Round 2 of the spec compliance audit.
             </p>
         </div>
     </div>
