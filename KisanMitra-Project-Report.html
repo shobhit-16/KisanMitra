@@ -702,7 +702,7 @@
         .btn-outline:hover { border-color: white; }
 
         /* ===== PAGE BREAK ===== */
-        .page-break { page-break-after: always; }
+        /* (page-break class reserved for future print use) */
 
         /* ===== PRINT ===== */
         @media print {
@@ -816,63 +816,6 @@
             font-size: 14px;
         }
 
-        /* ===== SPLASH ===== */
-        .splash-section {
-            background: linear-gradient(135deg, #f0fff0 0%, #e8f5e9 100%);
-            margin: 0 -32px;
-            padding: 72px 32px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .splash-inner {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .splash-text h2 {
-            font-family: 'Merriweather', serif;
-            font-size: 32px;
-            color: var(--green-900);
-            margin: 0 0 16px;
-        }
-
-        .splash-text p { font-size: 15px; color: var(--text-secondary); }
-
-        .splash-metrics {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .metric-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-
-        .metric-num {
-            font-size: 36px;
-            font-weight: 900;
-            font-family: 'Merriweather', serif;
-            color: var(--green-800);
-            line-height: 1;
-        }
-
-        .metric-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 6px;
-        }
-
-        @media (max-width: 700px) {
-            .splash-inner { grid-template-columns: 1fr; gap: 32px; }
-        }
     </style>
 </head>
 <body>
@@ -936,8 +879,11 @@
 
         <div class="highlight-box">
             <div class="stat">₹5.02L</div>
-            <div class="stat-label">Average annual income loss from poor price timing &amp; distress sales</div>
+            <div class="stat-label">Average annual income loss from poor price timing &amp; distress sales<sup style="font-size:11px; opacity:0.7;">*</sup></div>
         </div>
+        <p style="font-size:12px; color:var(--text-secondary); margin-top:-16px; margin-bottom:24px;">
+            <sup>*</sup> Estimate based on Nashik district Rabi onion market data, distress sale literature (Maharashtra), and MSP non-compliance rates. Requires field validation with 2026–27 season data.
+        </p>
 
         <p>
             India's 126 million smallholder farmers face a compounding information asymmetry: they sell into volatile markets at harvest lows, borrow at usurious rates during crises, and make input decisions without soil or weather context. KisanMitra addresses this through a <strong>Constraint Priority Engine (CPE)</strong> — a rule-based AI that understands each farmer's unique situation and surfaces only the recommendations that are right for them, right now.
@@ -1089,7 +1035,7 @@
             <div class="module-num">2</div>
             <div class="module-content">
                 <div class="module-name">Cash Flow Assessment</div>
-                <div class="module-desc">Classifies the farmer's 30-day financial position as HEALTHY (>₹10,000 surplus), BALANCED, TIGHT (≤₹5,000 surplus with urgent obligations), or DEFICIT. This status feeds Gate 3 of the CPE — suppressing capital-intensive recommendations when cash is tight.</div>
+                <div class="module-desc">Classifies the farmer's 30-day financial position as HEALTHY (&gt;₹10,000 surplus), BALANCED, TIGHT (&le;₹5,000 surplus with urgent obligations), or DEFICIT. This status feeds Gate 3 of the CPE — suppressing capital-intensive recommendations when cash is tight.</div>
                 <span class="module-tag">CashFlowStatus</span> <span class="module-tag">4-tier classification</span>
             </div>
         </div>
@@ -1125,7 +1071,7 @@
             <div class="module-num">6</div>
             <div class="module-content">
                 <div class="module-name">Income Ledger</div>
-                <div class="module-desc">Records every sale — date, quantity, price, mandi. Auto-flags distress sales (price &lt;₹637.50 = MSP × 0.85, or sold within 7 days of harvest, or large first-of-season quantity). Establishes a personal baseline price from 3+ non-distress sales. The distress flag protects the farmer's creditworthiness by creating an audit trail of why a low-price sale occurred.</div>
+                <div class="module-desc">Records every sale — date, quantity, price, mandi. Auto-flags distress sales (price &lt;₹637.50 = MSP &times; 0.85, or sold within 7 days of harvest, or large first-of-season quantity). Establishes a personal baseline price from 3+ non-distress sales. The distress flag protects the farmer's creditworthiness by creating an audit trail of why a low-price sale occurred.</div>
                 <span class="module-tag">Distress detection</span> <span class="module-tag">Baseline pricing</span> <span class="module-tag">Credit history</span>
             </div>
         </div>
@@ -1605,7 +1551,7 @@
                 <tr><td>DISTRESS_THRESHOLD</td><td>₹637.50/quintal (MSP × 0.85)</td><td>Distress sale flag</td></tr>
                 <tr><td>STORAGE_COST_ONION</td><td>₹80/quintal/month</td><td>Storage math</td></tr>
                 <tr><td>QUALITY_LOSS_ONION</td><td>8%/month</td><td>Storage math</td></tr>
-                <tr><td>EMERGENCY_THRESHOLD</td><td>≤ −₹5,000 net position</td><td>Cash flow EMERGENCY classification</td></tr>
+                <tr><td>EMERGENCY_THRESHOLD</td><td>&le; &minus;₹5,000 net position</td><td>Cash flow EMERGENCY classification</td></tr>
                 <tr><td>HEALTHY_THRESHOLD</td><td>&gt; ₹10,000 surplus, no obligations</td><td>Cash flow HEALTHY classification</td></tr>
             </tbody>
         </table>
