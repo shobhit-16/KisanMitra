@@ -742,6 +742,20 @@
             flex-direction: column;
         }
 
+        .demo-screen-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .demo-screen-link:hover .demo-screen {
+            box-shadow: 0 8px 24px rgba(46,125,50,0.2);
+            transform: translateY(-2px);
+            border-color: var(--green-400);
+        }
+
         .demo-screen-header {
             background: linear-gradient(135deg, var(--green-700), var(--green-800));
             color: white;
@@ -958,59 +972,67 @@
         </p>
 
         <div class="demo-grid">
-            <div class="demo-screen">
-                <div class="demo-screen-header">S1 — Language</div>
-                <div class="demo-screen-body">
-                    <div style="text-align:center; margin-bottom:8px;">
-                        <div style="font-size:20px;">🌾</div>
-                        <div style="font-size:8px; font-weight:700; color:var(--green-800);">KisanMitra</div>
-                    </div>
-                    <div class="demo-chip green" style="justify-content:center;">English</div>
-                    <div class="demo-chip green" style="justify-content:center;">हिंदी</div>
-                    <div class="demo-chip green" style="justify-content:center;">मराठी</div>
-                </div>
-            </div>
-            <div class="demo-screen">
-                <div class="demo-screen-header">S2 — Dashboard</div>
-                <div class="demo-screen-body">
-                    <div style="font-size:9px; font-weight:700; color:var(--green-900);">Namaste, Rambhau</div>
-                    <div class="demo-chip green"><span style="font-size:8px;">🌾</span> Rabi Onion</div>
-                    <div class="demo-chip gold"><span style="font-size:8px;">📅</span> 47 days to harvest</div>
-                    <div class="demo-bar"><div class="demo-bar-fill" style="width:65%"></div></div>
-                    <div class="demo-icon-grid">
-                        <div class="demo-icon">📋</div>
-                        <div class="demo-icon">📊</div>
-                        <div class="demo-icon">💰</div>
-                        <div class="demo-icon">🏥</div>
-                        <div class="demo-icon">📖</div>
-                        <div class="demo-icon">⚙️</div>
+            <a href="demo.html" target="_blank" class="demo-screen-link">
+                <div class="demo-screen">
+                    <div class="demo-screen-header">S1 — Language</div>
+                    <div class="demo-screen-body">
+                        <div style="text-align:center; margin-bottom:8px;">
+                            <div style="font-size:20px;">🌾</div>
+                            <div style="font-size:8px; font-weight:700; color:var(--green-800);">KisanMitra</div>
+                        </div>
+                        <div class="demo-chip green" style="justify-content:center;">English</div>
+                        <div class="demo-chip green" style="justify-content:center;">हिंदी</div>
+                        <div class="demo-chip green" style="justify-content:center;">मराठी</div>
                     </div>
                 </div>
-            </div>
-            <div class="demo-screen">
-                <div class="demo-screen-header">S4 — Mandi Prices</div>
-                <div class="demo-screen-body">
-                    <div style="font-size:10px; font-weight:700; color:var(--green-900);">Today's Onion Price</div>
-                    <div style="font-size:18px; font-weight:900; color:var(--green-800);">₹28/q</div>
-                    <div class="demo-chip gold"><span style="font-size:8px;">↑</span> +8% this week</div>
-                    <div style="font-size:8px; color:var(--text-secondary); margin-top:4px;">vs MSP ₹7.50/kg</div>
-                    <div class="demo-chip green"><span style="font-size:8px;">✓</span> +₹20.50 above floor</div>
-                </div>
-            </div>
-            <div class="demo-screen">
-                <div class="demo-screen-header">S5 — Sell or Store?</div>
-                <div class="demo-screen-body">
-                    <div style="font-size:9px; font-weight:600;">5 quintal @ ₹28/q</div>
-                    <div class="demo-chip gold"><span style="font-size:8px;">📦</span> Storage 2 months</div>
-                    <div style="font-size:8px; color:var(--text-secondary);">Storage: ₹160<br>Expected gain: ₹875<br>Net: <strong style="color:var(--green-800);">₹715</strong></div>
-                    <div style="background:var(--green-100); border-radius:6px; padding:6px; text-align:center; margin-top:4px;">
-                        <div style="font-size:9px; font-weight:700; color:var(--green-900);">STORE VIABLE</div>
+            </a>
+            <a href="demo.html" target="_blank" class="demo-screen-link">
+                <div class="demo-screen">
+                    <div class="demo-screen-header">S2 — Dashboard</div>
+                    <div class="demo-screen-body">
+                        <div style="font-size:9px; font-weight:700; color:var(--green-900);">Namaste, Rambhau</div>
+                        <div class="demo-chip green"><span style="font-size:8px;">🌾</span> Rabi Onion</div>
+                        <div class="demo-chip gold"><span style="font-size:8px;">📅</span> 47 days to harvest</div>
+                        <div class="demo-bar"><div class="demo-bar-fill" style="width:65%"></div></div>
+                        <div class="demo-icon-grid">
+                            <div class="demo-icon">📋</div>
+                            <div class="demo-icon">📊</div>
+                            <div class="demo-icon">💰</div>
+                            <div class="demo-icon">🏥</div>
+                            <div class="demo-icon">📖</div>
+                            <div class="demo-icon">⚙️</div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
+            <a href="demo.html" target="_blank" class="demo-screen-link">
+                <div class="demo-screen">
+                    <div class="demo-screen-header">S4 — Mandi Prices</div>
+                    <div class="demo-screen-body">
+                        <div style="font-size:10px; font-weight:700; color:var(--green-900);">Today's Onion Price</div>
+                        <div style="font-size:18px; font-weight:900; color:var(--green-800);">₹28/q</div>
+                        <div class="demo-chip gold"><span style="font-size:8px;">↑</span> +8% this week</div>
+                        <div style="font-size:8px; color:var(--text-secondary); margin-top:4px;">vs MSP ₹7.50/kg</div>
+                        <div class="demo-chip green"><span style="font-size:8px;">✓</span> +₹20.50 above floor</div>
+                    </div>
+                </div>
+            </a>
+            <a href="demo.html" target="_blank" class="demo-screen-link">
+                <div class="demo-screen">
+                    <div class="demo-screen-header">S5 — Sell or Store?</div>
+                    <div class="demo-screen-body">
+                        <div style="font-size:9px; font-weight:600;">5 quintal @ ₹28/q</div>
+                        <div class="demo-chip gold"><span style="font-size:8px;">📦</span> Storage 2 months</div>
+                        <div style="font-size:8px; color:var(--text-secondary);">Storage: ₹160<br>Expected gain: ₹875<br>Net: <strong style="color:var(--green-800);">₹715</strong></div>
+                        <div style="background:var(--green-100); border-radius:6px; padding:6px; text-align:center; margin-top:4px;">
+                            <div style="font-size:9px; font-weight:700; color:var(--green-900);">STORE VIABLE</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
-        <p style="text-align:center; font-size:12px; color:var(--text-secondary); margin-top:8px;">
-            <em>Live prototype screens — tap any screen to navigate the full demo</em>
+        <p style="text-align:center; font-size:12px; color:var(--text-secondary); margin-top:12px;">
+            <em>Click any screen to open the interactive prototype →</em>
         </p>
 
         <h2>Core User Flows</h2>
