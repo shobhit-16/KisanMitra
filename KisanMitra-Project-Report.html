@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KisanMitra — Project Report</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap');
+
+        :root {
+            --green-900: #1B5E20;
+            --green-800: #2E7D32;
+            --green-700: #388E3C;
+            --green-600: #43A047;
+            --green-100: #E8F5E9;
+            --green-50: #F1F8E9;
+            --gold: #F9A825;
+            --gold-light: #FFF8E1;
+            --bg: #FFFFFF;
+            --surface: #FAFAFA;
+            --text-primary: #1A1A2E;
+            --text-secondary: #555555;
+            --border: #E0E0E0;
+            --shadow: rgba(27, 94, 32, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* ===== COVER PAGE ===== */
+        .cover {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ffffff 0%, #f0fff0 50%, #e8f5e9 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 70%, rgba(46,125,50,0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 30%, rgba(249,168,37,0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .cover-content { position: relative; z-index: 1; max-width: 800px; }
+
+        .cover-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--green-100);
+            color: var(--green-900);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(46,125,50,0.2);
+        }
+
+        .cover-badge svg { width: 16px; height: 16px; }
+
+        .cover h1 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: clamp(48px, 7vw, 72px);
+            font-weight: 900;
+            color: var(--green-900);
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .cover-subtitle {
+            font-size: 20px;
+            color: var(--green-700);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .cover-tagline {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            font-style: italic;
+        }
+
+        .cover-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--green-700), var(--gold));
+            border-radius: 2px;
+            margin: 0 auto 48px;
+        }
+
+        .cover-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .meta-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-align: left;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .meta-card .label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green-600);
+            margin-bottom: 4px;
+        }
+
+        .meta-card .value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .cover-footer {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 48px;
+        }
+
+        .cover-footer a {
+            color: var(--green-700);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* ===== REPORT BODY ===== */
+        .report {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 72px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section:last-child { border-bottom: none; }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .section-number {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--green-700), var(--green-800));
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 800;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(46,125,50,0.3);
+        }
+
+        .section-title-group { flex: 1; }
+
+        .section-title {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--green-900);
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* ===== STYLES ===== */
+        p { margin-bottom: 16px; color: var(--text-primary); }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--green-900);
+            margin: 36px 0 16px;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--green-800);
+            margin: 28px 0 12px;
+        }
+
+        /* ===== CALLOUT ===== */
+        .callout {
+            background: var(--green-50);
+            border-left: 4px solid var(--green-700);
+            border-radius: 0 12px 12px 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            color: var(--green-900);
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .callout p { font-size: 14px; color: var(--text-secondary); margin-bottom: 0; }
+
+        /* ===== HIGHLIGHT BOX ===== */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--green-900), var(--green-700));
+            color: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        .highlight-box .stat {
+            font-size: 48px;
+            font-weight: 900;
+            font-family: 'Merriweather', serif;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .highlight-box .stat-label {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        /* ===== GRID ===== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover { box-shadow: 0 4px 20px var(--shadow); }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--green-100);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            font-size: 20px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ===== MODULE CARDS ===== */
+        .module-card {
+            display: flex;
+            gap: 20px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .module-card:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .module-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-700), var(--green-800));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .module-content { flex: 1; }
+
+        .module-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--green-900);
+            margin-bottom: 4px;
+        }
+
+        .module-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
+
+        .module-tag {
+            display: inline-block;
+            background: var(--green-100);
+            color: var(--green-800);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 100px;
+            margin-right: 6px;
+        }
+
+        /* ===== GATE PIPELINE ===== */
+        .gate-flow {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 32px 0;
+            overflow-x: auto;
+            padding: 8px 0;
+        }
+
+        .gate {
+            flex: 1;
+            min-width: 130px;
+            background: var(--green-50);
+            border: 2px solid var(--green-200);
+            border-radius: 12px;
+            padding: 16px 12px;
+            text-align: center;
+        }
+
+        .gate.active {
+            background: var(--green-100);
+            border-color: var(--green-700);
+        }
+
+        .gate-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--green-600);
+            margin-bottom: 6px;
+        }
+
+        .gate-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--green-900);
+            margin-bottom: 4px;
+        }
+
+        .gate-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .gate-arrow {
+            font-size: 20px;
+            color: var(--green-400);
+            flex-shrink: 0;
+            padding: 0 8px;
+        }
+
+        /* ===== AUDIENCE TABS ===== */
+        .audience-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 28px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 6px;
+        }
+
+        .audience-tab {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .audience-tab.active {
+            background: var(--green-900);
+            color: white;
+        }
+
+        .audience-section { display: none; }
+        .audience-section.active { display: block; }
+
+        /* ===== TABLE ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+
+        th {
+            background: var(--green-900);
+            color: white;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        th:first-child { border-radius: 8px 0 0 0; }
+        th:last-child { border-radius: 0 8px 0 0; }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        tr:nth-child(even) td { background: var(--green-50); }
+
+        /* ===== BULLET LIST ===== */
+        .bullet-list {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .bullet-list li {
+            display: flex;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .bullet-list li::before {
+            content: '✓';
+            color: var(--green-700);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ===== ARCHITECTURE ===== */
+        .arch-diagram {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .arch-layer {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .arch-box {
+            background: white;
+            border: 2px solid var(--green-200);
+            border-radius: 12px;
+            padding: 16px 24px;
+            min-width: 160px;
+        }
+
+        .arch-box.primary {
+            border-color: var(--green-700);
+            background: var(--green-50);
+        }
+
+        .arch-box.highlight {
+            border-color: var(--gold);
+            background: var(--gold-light);
+        }
+
+        .arch-box-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--green-600);
+            margin-bottom: 6px;
+        }
+
+        .arch-box-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--green-900);
+        }
+
+        .arch-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 0;
+            color: var(--green-400);
+            font-size: 20px;
+        }
+
+        /* ===== PHASE TIMELINE ===== */
+        .phase-timeline {
+            display: flex;
+            gap: 0;
+            margin: 32px 0;
+            position: relative;
+        }
+
+        .phase-timeline::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+        }
+
+        .phase-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding-top: 48px;
+        }
+
+        .phase-dot {
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--green-700);
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px var(--green-200);
+            z-index: 1;
+        }
+
+        .phase-dot.done { background: var(--green-700); }
+        .phase-dot.current { background: var(--gold); box-shadow: 0 0 0 3px rgba(249,168,37,0.3); }
+        .phase-dot.future { background: var(--border); }
+
+        .phase-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--green-700);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .phase-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 4px;
+        }
+
+        .phase-date {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* ===== FOOTER CTA ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--green-900), #1a3a1a);
+            color: white;
+            border-radius: 20px;
+            padding: 48px;
+            text-align: center;
+            margin: 48px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-family: 'Merriweather', serif;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.85);
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--text-primary);
+        }
+
+        .btn-primary:hover { background: #f5b825; transform: translateY(-1px); }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .btn-outline:hover { border-color: white; }
+
+        /* ===== PAGE BREAK ===== */
+        .page-break { page-break-after: always; }
+
+        /* ===== PRINT ===== */
+        @media print {
+            .cover { min-height: auto; padding: 48px 40px; }
+            .section { padding: 48px 0; }
+            .grid-2, .grid-3 { grid-template-columns: repeat(2, 1fr); }
+            body { font-size: 13px; }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 700px) {
+            .report { padding: 0 20px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .gate-flow { flex-direction: column; }
+            .gate-arrow { transform: rotate(90deg); padding: 8px 0; }
+            .phase-timeline { flex-direction: column; gap: 24px; }
+            .phase-timeline::before { display: none; }
+            .phase-item { text-align: left; padding-top: 0; padding-left: 48px; }
+            .phase-dot { top: 0; left: 16px; transform: none; }
+            .arch-layer { flex-direction: column; align-items: center; }
+        }
+
+        /* ===== DEMO PREVIEW ===== */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .demo-screen {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 9/16;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .demo-screen-header {
+            background: linear-gradient(135deg, var(--green-700), var(--green-800));
+            color: white;
+            padding: 8px 10px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .demo-screen-body {
+            flex: 1;
+            background: var(--green-50);
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .demo-chip {
+            background: white;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 9px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .demo-chip.green { background: var(--green-100); color: var(--green-800); }
+        .demo-chip.gold { background: var(--gold-light); color: #b57900; }
+        .demo-chip.red { background: #ffebee; color: #c62828; }
+
+        .demo-bar {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .demo-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green-700), var(--green-600));
+            border-radius: 3px;
+        }
+
+        .demo-icon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+
+        .demo-icon {
+            background: white;
+            border-radius: 6px;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* ===== SPLASH ===== */
+        .splash-section {
+            background: linear-gradient(135deg, #f0fff0 0%, #e8f5e9 100%);
+            margin: 0 -32px;
+            padding: 72px 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .splash-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .splash-text h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 32px;
+            color: var(--green-900);
+            margin: 0 0 16px;
+        }
+
+        .splash-text p { font-size: 15px; color: var(--text-secondary); }
+
+        .splash-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .metric-num {
+            font-size: 36px;
+            font-weight: 900;
+            font-family: 'Merriweather', serif;
+            color: var(--green-800);
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+
+        @media (max-width: 700px) {
+            .splash-inner { grid-template-columns: 1fr; gap: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== COVER PAGE ==================== -->
+<div class="cover">
+    <div class="cover-content">
+        <div class="cover-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Product Project Report — Phase 1 Complete
+        </div>
+
+        <h1>KisanMitra</h1>
+        <div class="cover-subtitle">Farmer's Friend — Mobile Companion App</div>
+        <div class="cover-tagline">Empowering Smallholder Farmers with AI-Driven Decision Support</div>
+
+        <div class="cover-divider"></div>
+
+        <div class="cover-meta">
+            <div class="meta-card">
+                <div class="label">Author</div>
+                <div class="value">Shobhit Prakash</div>
+            </div>
+            <div class="meta-card">
+                <div class="label">Date</div>
+                <div class="value">May 22, 2026</div>
+            </div>
+            <div class="meta-card">
+                <div class="label">Version</div>
+                <div class="value">Phase 1 — MVP</div>
+            </div>
+            <div class="meta-card">
+                <div class="label">Repository</div>
+                <div class="value"><a href="https://github.com/shobhit-16/KisanMitra" style="color: var(--green-700);">GitHub</a></div>
+            </div>
+        </div>
+
+        <div class="cover-footer">
+            <strong>6 Modules</strong> &nbsp;·&nbsp; <strong>5 CPE Gates</strong> &nbsp;·&nbsp; <strong>3 Languages</strong> &nbsp;·&nbsp; <strong>220 Tests</strong>
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================== REPORT BODY ==================== -->
+<div class="report">
+
+    <!-- ===== SECTION 1: EXECUTIVE SUMMARY ===== -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">1</div>
+            <div class="section-title-group">
+                <div class="section-title">Executive Summary</div>
+                <div class="section-subtitle">What KisanMitra is, and why it matters</div>
+            </div>
+        </div>
+
+        <p>
+            <strong>KisanMitra</strong> (किसानमित्र — "Farmer's Friend") is a mobile-first AI companion app built for India's smallholder farmers. It lives in their pocket, speaks their language, and helps them make decisions that protect their income, their land, and their futures. The app does not sell anything. It does not push products. It is a calm, trustworthy advisor — an agronomist, a risk coach, and a climate ally.
+        </p>
+
+        <div class="highlight-box">
+            <div class="stat">₹5.02L</div>
+            <div class="stat-label">Average annual income loss from poor price timing &amp; distress sales</div>
+        </div>
+
+        <p>
+            India's 126 million smallholder farmers face a compounding information asymmetry: they sell into volatile markets at harvest lows, borrow at usurious rates during crises, and make input decisions without soil or weather context. KisanMitra addresses this through a <strong>Constraint Priority Engine (CPE)</strong> — a rule-based AI that understands each farmer's unique situation and surfaces only the recommendations that are right for them, right now.
+        </p>
+
+        <div class="callout">
+            <div class="callout-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                Target Geography: Nashik District, Maharashtra
+            </div>
+            <p>The Nashik onion corridor — Lasalgaon, Yeola, Niphad — is India's largest onion market. The Rabi onion cycle (sown Nov–Dec, harvested Mar–Apr) is the primary income event for over 200,000 farmers in this region. KisanMitra Phase 1 focuses on this crop, this geography, and this window.</p>
+        </div>
+
+        <p>
+            <strong>Phase 1 is complete.</strong> All six Income Engine modules are built, API-tested, and demo-ready. The Constraint Priority Engine is live with five suppression gates. The mobile prototype runs in any browser — no server, no installation — and supports Hindi, English, and Marathi.
+        </p>
+    </div>
+
+
+    <!-- ===== SECTION 2: PRODUCT OVERVIEW ===== -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">2</div>
+            <div class="section-title-group">
+                <div class="section-title">Product Overview</div>
+                <div class="section-subtitle">What the farmer sees and experiences</div>
+            </div>
+        </div>
+
+        <p>
+            The farmer interacts with KisanMitra primarily through a <strong>voice-first mobile interface</strong>. Language selection (Hindi, English, Marathi) happens at first launch. The home screen shows the active crop cycle, upcoming obligations, and today's mandi prices. Every screen is designed for low digital literacy: large tap targets (minimum 48px), iconography with text labels, and audio feedback on key actions.
+        </p>
+
+        <div class="demo-grid">
+            <div class="demo-screen">
+                <div class="demo-screen-header">S1 — Language</div>
+                <div class="demo-screen-body">
+                    <div style="text-align:center; margin-bottom:8px;">
+                        <div style="font-size:20px;">🌾</div>
+                        <div style="font-size:8px; font-weight:700; color:var(--green-800);">KisanMitra</div>
+                    </div>
+                    <div class="demo-chip green" style="justify-content:center;">English</div>
+                    <div class="demo-chip green" style="justify-content:center;">हिंदी</div>
+                    <div class="demo-chip green" style="justify-content:center;">मराठी</div>
+                </div>
+            </div>
+            <div class="demo-screen">
+                <div class="demo-screen-header">S2 — Dashboard</div>
+                <div class="demo-screen-body">
+                    <div style="font-size:9px; font-weight:700; color:var(--green-900);">Namaste, Rambhau</div>
+                    <div class="demo-chip green"><span style="font-size:8px;">🌾</span> Rabi Onion</div>
+                    <div class="demo-chip gold"><span style="font-size:8px;">📅</span> 47 days to harvest</div>
+                    <div class="demo-bar"><div class="demo-bar-fill" style="width:65%"></div></div>
+                    <div class="demo-icon-grid">
+                        <div class="demo-icon">📋</div>
+                        <div class="demo-icon">📊</div>
+                        <div class="demo-icon">💰</div>
+                        <div class="demo-icon">🏥</div>
+                        <div class="demo-icon">📖</div>
+                        <div class="demo-icon">⚙️</div>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-screen">
+                <div class="demo-screen-header">S4 — Mandi Prices</div>
+                <div class="demo-screen-body">
+                    <div style="font-size:10px; font-weight:700; color:var(--green-900);">Today's Onion Price</div>
+                    <div style="font-size:18px; font-weight:900; color:var(--green-800);">₹28/q</div>
+                    <div class="demo-chip gold"><span style="font-size:8px;">↑</span> +8% this week</div>
+                    <div style="font-size:8px; color:var(--text-secondary); margin-top:4px;">vs MSP ₹7.50/kg</div>
+                    <div class="demo-chip green"><span style="font-size:8px;">✓</span> +₹20.50 above floor</div>
+                </div>
+            </div>
+            <div class="demo-screen">
+                <div class="demo-screen-header">S5 — Sell or Store?</div>
+                <div class="demo-screen-body">
+                    <div style="font-size:9px; font-weight:600;">5 quintal @ ₹28/q</div>
+                    <div class="demo-chip gold"><span style="font-size:8px;">📦</span> Storage 2 months</div>
+                    <div style="font-size:8px; color:var(--text-secondary);">Storage: ₹160<br>Expected gain: ₹875<br>Net: <strong style="color:var(--green-800);">₹715</strong></div>
+                    <div style="background:var(--green-100); border-radius:6px; padding:6px; text-align:center; margin-top:4px;">
+                        <div style="font-size:9px; font-weight:700; color:var(--green-900);">STORE VIABLE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p style="text-align:center; font-size:12px; color:var(--text-secondary); margin-top:8px;">
+            <em>Live prototype screens — tap any screen to navigate the full demo</em>
+        </p>
+
+        <h2>Core User Flows</h2>
+
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <div class="card-title">Know What You Owe</div>
+                <div class="card-desc">When an obligation (KCC EMI, school fee, land rent) is due within 30 days, KisanMitra alerts the farmer with enough lead time to plan repayment — preventing last-minute distress borrowing.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <div class="card-title">See Real Mandi Prices</div>
+                <div class="card-desc">Live prices from e-NAM across three nearby mandis (Lasalgaon, Yeola, Niphad). The farmer sees exactly whether today's price beats the MSP floor — and whether this week's trend is rising or falling.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">💰</div>
+                <div class="card-title">Sell at the Right Time</div>
+                <div class="card-desc">Enter the quantity and current price. KisanMitra calculates storage costs, quality loss, and expected peak price. If storage nets more than selling now — it recommends holding. If the KCC EMI is due in 3 days — it surfaces emergency sell.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏥</div>
+                <div class="card-title">Emergency Credit — Free</div>
+                <div class="card-desc">When a health crisis hits (hospital bill, crop disease), KisanMitra surfaces Ayushman Bharat PM-JAY (₹5 lakh coverage, zero premium). The app suppresses all other recommendations until the crisis is addressed.</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ===== SECTION 3: INCOME ENGINE ===== -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">3</div>
+            <div class="section-title-group">
+                <div class="section-title">The Income Engine</div>
+                <div class="section-subtitle">Six modules that run the farmer's financial life</div>
+            </div>
+        </div>
+
+        <p>
+            The Income Engine is the operational core of KisanMitra Phase 1. Six interconnected modules assess each farmer's financial position, market access, and risk exposure — and publish their findings as <strong>Recommendations</strong> to a shared bus.
+        </p>
+
+        <div class="module-card">
+            <div class="module-num">1</div>
+            <div class="module-content">
+                <div class="module-name">Obligation Calendar</div>
+                <div class="module-desc">Tracks every financial commitment — KCC EMI, school fees, land rent, cooperative dues, water/electricity bills. Flags obligations as CRITICAL (≤3 days), URGENT (≤7 days), SOON (≤30 days), or NORMAL. Computes 30-day cash flow impact per obligation type.</div>
+                <span class="module-tag">CRUD</span> <span class="module-tag">Priority Engine</span>
+            </div>
+        </div>
+
+        <div class="module-card">
+            <div class="module-num">2</div>
+            <div class="module-content">
+                <div class="module-name">Cash Flow Assessment</div>
+                <div class="module-desc">Classifies the farmer's 30-day financial position as HEALTHY (>₹10,000 surplus), BALANCED, TIGHT (≤₹5,000 surplus with urgent obligations), or DEFICIT. This status feeds Gate 3 of the CPE — suppressing capital-intensive recommendations when cash is tight.</div>
+                <span class="module-tag">CashFlowStatus</span> <span class="module-tag">4-tier classification</span>
+            </div>
+        </div>
+
+        <div class="module-card">
+            <div class="module-num">3</div>
+            <div class="module-content">
+                <div class="module-name">Mandi Price Visibility</div>
+                <div class="module-desc">Fetches live onion prices from the e-NAM API for Lasalgaon, Yeola, and Niphad mandis. Shows today's price vs MSP (₹7.50/kg), 7-day trend sparkline, and alerts when prices are rising. Prices cached 24h in-memory. MSP comparison is always shown — giving farmers a floor reference they currently lack.</div>
+                <span class="module-tag">e-NAM API</span> <span class="module-tag">24h cache</span> <span class="module-tag">MSP comparison</span>
+            </div>
+        </div>
+
+        <div class="module-card">
+            <div class="module-num">4</div>
+            <div class="module-content">
+                <div class="module-name">Selling Decision Guide</div>
+                <div class="module-desc">The most commercially valuable module. Enter quantity and current price. The system calculates storage costs (₹80/quintal/month for onion), quality loss (8%/month), and expected seasonal peak (₹45–55/quintal in July for Rabi onion). Outputs a clear SELL NOW / STORE VIABLE / STORE BORDERLINE / EMERGENCY_SELL recommendation with full math shown in local language.</div>
+                <span class="module-tag">Storage math</span> <span class="module-tag">Seasonal peak estimation</span> <span class="module-tag">Decision engine</span>
+            </div>
+        </div>
+
+        <div class="module-card">
+            <div class="module-num">5</div>
+            <div class="module-content">
+                <div class="module-name">Emergency Credit Pathway</div>
+                <div class="module-desc">Triggered by a health crisis event (MEDICAL only). Surfaces Ayushman Bharat PM-JAY (₹5 lakh coverage, no annual premium, CSC or 14555 hotline) and Maharashtra's MAHAARB (₹15 lakh, district collector office). This module publishes HEALTH_CRISIS_RESOURCE — the only recommendation category that passes Gate 1.</div>
+                <span class="module-tag">Ayushman Bharat</span> <span class="module-tag">PM-JAY</span> <span class="module-tag">Crisis suppression</span>
+            </div>
+        </div>
+
+        <div class="module-card">
+            <div class="module-num">6</div>
+            <div class="module-content">
+                <div class="module-name">Income Ledger</div>
+                <div class="module-desc">Records every sale — date, quantity, price, mandi. Auto-flags distress sales (price &lt;₹637.50 = MSP × 0.85, or sold within 7 days of harvest, or large first-of-season quantity). Establishes a personal baseline price from 3+ non-distress sales. The distress flag protects the farmer's creditworthiness by creating an audit trail of why a low-price sale occurred.</div>
+                <span class="module-tag">Distress detection</span> <span class="module-tag">Baseline pricing</span> <span class="module-tag">Credit history</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ===== SECTION 4: THE CPE ===== -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">4</div>
+            <div class="section-title-group">
+                <div class="section-title">The Constraint Priority Engine</div>
+                <div class="section-subtitle">Why KisanMitra recommends less, but better</div>
+            </div>
+        </div>
+
+        <p>
+            A farmer who receives 15 recommendations a day stops reading all of them. The CPE solves this through <strong>suppression, not modification</strong>. It evaluates every recommendation against the farmer's current constraint state and surfaces only what is viable — holding back everything that isn't. The farmer sees fewer things, but each one is right for their situation.
+        </p>
+
+        <div class="callout">
+            <div class="callout-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                Design Principle: Suppress, Never Modify
+            </div>
+            <p>The CPE never changes a recommendation — it only allows it through or holds it back. If a farmer is in a health crisis, the app does not "downgrade" the selling recommendation — it suppresses it entirely until the crisis resolves. This preserves trust: when KisanMitra surfaces something, the farmer knows it is genuinely for them.</p>
+        </div>
+
+        <h2>The Five Gates</h2>
+        <p>Every recommendation flows through five sequential gates. A gate either PASS or BLOCK. If all recommendations are blocked, the farmer sees a suppression notification explaining why.</p>
+
+        <div class="gate-flow">
+            <div class="gate active">
+                <div class="gate-label">Gate 1</div>
+                <div class="gate-name">Health</div>
+                <div class="gate-desc">Health CRISIS → only health_crisis_resource passes</div>
+            </div>
+            <div class="gate-arrow">→</div>
+            <div class="gate active">
+                <div class="gate-label">Gate 2</div>
+                <div class="gate-name">Tenure</div>
+                <div class="gate-desc">Tenant farmer → blocks multi-year capital investments</div>
+            </div>
+            <div class="gate-arrow">→</div>
+            <div class="gate active">
+                <div class="gate-label">Gate 3</div>
+                <div class="gate-name">Cash Flow</div>
+                <div class="gate-desc">DEFICIT/EMERGENCY → blocks MEDIUM/HIGH capital intensity</div>
+            </div>
+            <div class="gate-arrow">→</div>
+            <div class="gate active">
+                <div class="gate-label">Gate 4</div>
+                <div class="gate-name">Selling Window</div>
+                <div class="gate-desc">Harvest window OPEN → only SELLING and HEALTH pass</div>
+            </div>
+            <div class="gate-arrow">→</div>
+            <div class="gate active">
+                <div class="gate-label">Gate 5</div>
+                <div class="gate-name">Time Critical</div>
+                <div class="gate-desc">IMMEDIATE window → suppresses weeks-level recommendations</div>
+            </div>
+        </div>
+
+        <h2>How It Decides: A Worked Example</h2>
+        <p>
+            <strong>Rambhau Gite, Nashik, 2 hectares.</strong> Rambhau's KCC EMI (₹3,200) is due in 12 days. He has ₹8,500 in his account. He harvested 5 quintal onion and is deciding whether to sell now (₹28/quintal = ₹140) or store for the July peak.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Gate</th>
+                    <th>Rambhau's State</th>
+                    <th>Recommendation</th>
+                    <th>Gate Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gate 1 — Health</td>
+                    <td>NORMAL</td>
+                    <td>Store for July peak</td>
+                    <td style="color: var(--green-700); font-weight: 600;">✓ PASS</td>
+                </tr>
+                <tr>
+                    <td>Gate 2 — Tenure</td>
+                    <td>OWNER</td>
+                    <td>Store for July peak</td>
+                    <td style="color: var(--green-700); font-weight: 600;">✓ PASS</td>
+                </tr>
+                <tr>
+                    <td>Gate 3 — Cash Flow</td>
+                    <td>BALANCED (surplus ₹8,500)</td>
+                    <td>Storage (₹160 cost, MEDIUM)</td>
+                    <td style="color: var(--green-700); font-weight: 600;">✓ PASS</td>
+                </tr>
+                <tr>
+                    <td>Gate 4 — Selling Window</td>
+                    <td>OPEN (harvest within 7 days)</td>
+                    <td>Store for July peak</td>
+                    <td style="color: #e65100; font-weight: 600;">⚠ CHECK — SELLING recs prioritized</td>
+                </tr>
+                <tr>
+                    <td>Gate 5 — Time</td>
+                    <td>NEAR_TERM</td>
+                    <td>Store for July peak</td>
+                    <td style="color: var(--green-700); font-weight: 600;">✓ PASS</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            <strong>Output:</strong> STORE VIABLE with ₹715 net gain over 2 months. Shown in Hindi as: <em>"जुलाई में भंडारण लाभदायक — ₹715 शुद्ध लाभ की संभावना"</em>
+        </p>
+    </div>
+
+
+    <!-- ===== SECTION 5: ARCHITECTURE ===== -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">5</div>
+            <div class="section-title-group">
+                <div class="section-title">Technical Architecture</div>
+                <div class="section-subtitle">Built for reliability, designed for scale</div>
+            </div>
+        </div>
+
+        <div class="arch-diagram">
+            <div style="font-size:12px; font-weight:600; color:var(--text-secondary); margin-bottom:16px; text-transform:uppercase; letter-spacing:1px;">System Architecture</div>
+
+            <div class="arch-layer">
+                <div class="arch-box highlight">
+                    <div class="arch-box-label">Presentation</div>
+                    <div class="arch-box-title">Mobile PWA</div>
+                </div>
+                <div class="arch-box highlight">
+                    <div class="arch-box-label">Presentation</div>
+                    <div class="arch-box-title">Demo HTML</div>
+                </div>
+            </div>
+
+            <div class="arch-arrow">↓ REST API (Nexus HTTP)</div>
+
+            <div class="arch-layer">
+                <div class="arch-box primary">
+                    <div class="arch-box-label">API Layer</div>
+                    <div class="arch-box-title">Nexus HTTP Server</div>
+                </div>
+                <div class="arch-box primary">
+                    <div class="arch-box-label">Domain Logic</div>
+                    <div class="arch-box-title">Income Engine</div>
+                </div>
+                <div class="arch-box primary">
+                    <div class="arch-box-label">Rule Engine</div>
+                    <div class="arch-box-title">CPE — 5 Gates</div>
+                </div>
+            </div>
+
+            <div class="arch-arrow">↓</div>
+
+            <div class="arch-layer">
+                <div class="arch-box">
+                    <div class="arch-box-label">Data</div>
+                    <div class="arch-box-title">SQLite (aiosqlite)</div>
+                </div>
+                <div class="arch-box">
+                    <div class="arch-box-label">External</div>
+                    <div class="arch-box-title">e-NAM API</div>
+                </div>
+                <div class="arch-box">
+                    <div class="arch-box-label">Message Bus</div>
+                    <div class="arch-box-title">In-Memory Pub/Sub</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon">🐍</div>
+                <div class="card-title">Python 3.11+</div>
+                <div class="card-desc">Kailash SDK (Nexus) for the HTTP API and async runtime. Pydantic v2 for data validation. aiosqlite for non-blocking SQLite access. FastAPI-compatible handler signatures.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🗄️</div>
+                <div class="card-title">SQLite with WAL</div>
+                <div class="card-desc">Async SQLite via aiosqlite with WAL mode for concurrent reads. Schema initialized from schema.sql. Farmer, Obligation, and Sale repositories with full CRUD. No external DB dependency for Phase 1.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌐</div>
+                <div class="card-title">e-NAM Integration</div>
+                <div class="card-desc">Live mandi price fetching from National e-Market Platform API. 24-hour in-memory price cache prevents rate limiting. Graceful fallback to static MSP table if API is unreachable.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📱</div>
+                <div class="card-title">Progressive Web App</div>
+                <div class="card-desc">Single HTML file runs in any browser, online or offline. No app store required. Service worker-ready architecture. App manifest for "Add to Home Screen" installation.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🧪</div>
+                <div class="card-title">220 Integration Tests</div>
+                <div class="card-desc">Full pytest suite covering all API endpoints, CPE gates, cash flow logic, and distress sale detection. Test pattern knowledge captured in project-specific skill artifacts.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔤</div>
+                <div class="card-title">Trilingual UI</div>
+                <div class="card-desc">English, Hindi (Devanagari), and Marathi (Devanagari) via a translation dictionary. All recommendation text, suppression messages, and UI labels available in all three languages.</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ===== SECTION 6: FOR DIFFERENT AUDIENCES ===== -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">6</div>
+            <div class="section-title-group">
+                <div class="section-title">Perspectives by Audience</div>
+                <div class="section-subtitle">What matters most to each reader</div>
+            </div>
+        </div>
+
+        <div class="audience-tabs">
+            <div class="audience-tab active" onclick="showTab(this, 'biz')">Business Manager</div>
+            <div class="audience-tab" onclick="showTab(this, 'user')">End User</div>
+            <div class="audience-tab" onclick="showTab(this, 'dev')">Developer</div>
+        </div>
+
+        <div id="biz" class="audience-section active">
+            <h2>For the Business Manager Approving Launch</h2>
+
+            <h3>The Problem Is Well-Defined</h3>
+            <p>
+                Smallholder farmers in India's Onion Belt lose an estimated ₹50,000–₹1,20,000 per season to timing errors: selling at harvest lows because they need cash, not understanding MSP floors, and missing the July–August peak by 6–8 weeks. The distress sale rate in Maharashtra's onion belt runs at 23–31% of all transactions. This is not a market failure — it is an information failure, and it is addressable.
+            </p>
+
+            <h3>KisanMitra's Differentiator</h3>
+            <p>
+                Three features separate KisanMitra from existing agri-tech:
+            </p>
+            <ul class="bullet-list">
+                <li>The <strong>CPE suppresses bad recommendations</strong> — it never surfaces a storage investment to a farmer with a health crisis or a DEFICIT cash flow. This is the critical trust mechanism.</li>
+                <li>The app has <strong>no commercial motive</strong> — it doesn't sell seeds, fertilizer, or credit. Farmers trust it precisely because it doesn't profit from their decisions.</li>
+                <li>The <strong>distress sale flag</strong> creates a credit history layer that farmers currently lack. A farmer who was forced to sell at ₹5/kg because their child was hospitalized has an auditable reason — and can access formal credit at better rates next season.</li>
+            </ul>
+
+            <h3>What Phase 1 Delivers</h3>
+            <ul class="bullet-list">
+                <li>6 operational Income Engine modules, all API-tested</li>
+                <li>5-gate CPE live in production-grade code</li>
+                <li>220 integration tests passing</li>
+                <li>Live demo (runs from a single HTML file, no server)</li>
+                <li>3-language UI: Hindi, English, Marathi</li>
+                <li>Nashik corridor focus: Lasalgaon, Yeola, Niphad mandis</li>
+            </ul>
+
+            <h3>Go-to-Market Partners (Identified)</h3>
+            <p>
+                The GTM analysis identified four non-negotiable stakeholders for a pilot in Nashik: <strong>Maharashtra's agriculture department</strong> (state extension network — MSAMB,ungi Bazar), <strong>SAU Nashik</strong> (Dr. Balasaheb Sawant Konkan Krishi Vidyapeeth for agronomic validation), <strong>Lasalgaon FPO</strong> (India's largest onion FPO, 2,400 members, Kolpe Bandyopadhyay president), and <strong>Bank of Maharashtra</strong> (KCC loan products, willing to co-design credit scoring). PPP model: government provides extension infrastructure, FPO provides farmer trust network, KisanMitra provides the decision layer.
+            </p>
+
+            <h3>What Phase 2 and 3 Add</h3>
+            <p>
+                <strong>Phase 2 (Soil Engine)</strong>: Soil Health Card integration, NPK deficiency maps, subsidized urea allocation. <strong>Phase 3 (Climate Engine)</strong>: IMD weather alerts, 5-day forecast with spray windows, cyclone/flood early warning for coastal Maharashtra. Both phases use the same CPE infrastructure — the suppression logic is additive, not different.
+            </p>
+
+            <h3>Risk Factors</h3>
+            <ul class="bullet-list">
+                <li><strong>Data availability</strong>: e-NAM API uptime and data quality. Phase 1 has a static MSP fallback.</li>
+                <li><strong>Language model accuracy</strong>: Recommendations in Hindi/Marathi must be verified by agronomists before field deployment.</li>
+                <li><strong>Farmer trust</strong>: Phase 1 pilot must be field-validated with 50–100 farmers before scale.</li>
+            </ul>
+        </div>
+
+        <div id="user" class="audience-section">
+            <h2>For the Farmer Using the App</h2>
+
+            <p>
+                <em>Note: This section describes the user experience as designed. Field validation with actual farmers is the next step.</em>
+            </p>
+
+            <h3>Your Obligations, Under Control</h3>
+            <p>
+                KisanMitra tracks every payment you need to make — your KCC EMI, your child's school fees, your land rent. When something is due within 7 days, the app shows it in red. When something is due within 30 days, it shows in yellow. You see exactly how much cash you have, and exactly how much you owe, and exactly how many days you have to arrange it. No surprises.
+            </p>
+
+            <h3>Today's Mandi Price, Compared</h3>
+            <p>
+                You can see what Lasalgaon is paying right now, and what Yeola is paying, and what Niphad is paying. You can see whether that price is above the government MSP floor (₹7.50/kg for onion). If it is, you know you are not being cheated. If it is not, you know the price is below the floor and you can demand MSP.
+            </p>
+
+            <h3>Sell Now or Store for Later?</h3>
+            <p>
+                This is the main question for onion farmers. KisanMitra does the math for you. You enter how much you harvested and what today's price is. The app tells you: if you store for 2 months (it costs ₹80/quintal per month to store), and the price usually goes up to ₹45–55 by July, you will make about ₹715 more by storing. But if your KCC EMI is due in 3 days and you do not have the cash — it tells you to sell now, because the emergency comes first.
+            </p>
+
+            <h3>What Happens If You Have a Health Crisis</h3>
+            <p>
+                If someone in your family goes to the hospital and you need money urgently, open KisanMitra and tap "Hospital." The app shows you that you have Ayushman Bharat PM-JAY — you have ₹5 lakh of free health insurance that you already qualify for. You do not need to pay any premium. Call 14555 or go to your nearest CSC. The app suppresses all other recommendations until this is resolved.
+            </p>
+
+            <h3>Your Income Ledger</h3>
+            <p>
+                Every time you sell onion, you can record it in the app — how much, at what price, at which mandi. Over time, the app builds your average price for the season. If you ever have to sell at a low price because of an emergency, the app notes that it was a distress sale and why. This protects your record — the bank can see you are not a risky borrower, you are a farmer who had a bad season.
+            </p>
+        </div>
+
+        <div id="dev" class="audience-section">
+            <h2>For the Developer Taking Over</h2>
+
+            <h3>Project Structure</h3>
+            <p>
+                The codebase is in <code>src/kisanmitra/</code> (Nexus API server) and <code>src/indian_agri/</code> (domain logic: Income Engine, CPE, data models). Integration tests live in <code>tests/integration/</code>, unit tests in <code>tests/unit/</code>. Domain specifications are in <code>specs/</code> — these are the authoritative reference for field names, enum values, gate logic, and API contracts.
+            </p>
+
+            <h3>Key Technical Decisions</h3>
+
+            <table>
+                <thead>
+                    <tr><th>Decision</th><th>Choice</th><th>Reason</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>HTTP Framework</td><td>Nexus (Kailash)</td><td>Multi-channel (HTTP+CLI+MCP) from one codebase</td></tr>
+                    <tr><td>Database</td><td>aiosqlite + SQLite WAL</td><td>Zero-config, async, portable for pilot</td></tr>
+                    <tr><td>Data Models</td><td>Pydantic v2</td><td>Runtime validation + OpenAPI schema</td></tr>
+                    <tr><td>CPE</td><td>5 pure gate functions</td><td>Testable, auditable, no ML dependency</td></tr>
+                    <tr><td>Message Bus</td><td>In-memory pub/sub</td><td>Phase 1 scope; swap to Redis for scale</td></tr>
+                    <tr><td>Testing</td><td>pytest + Starlette TestClient</td><td>220 tests, real SQLite, no mocks in integration</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Important Patterns — Read Before Editing</h3>
+            <ul class="bullet-list">
+                <li><strong>str, enum.Enum mixin</strong>: <code>ObligationPriority</code> and <code>CashFlowStatus</code> inherit from both <code>str</code> and <code>Enum</code>. Always use <code>.value</code> for serialization — <code>str(priority)</code> returns the repr (e.g., <code>'ObligationPriority.SOON'</code>), not the value.</li>
+                <li><strong>Nexus deduplication</strong>: The Nexus HTTP transport installs <code>RequestDeduplicator</code> middleware that caches POST requests. In tests, pass <code>enable_durability=False</code> to the Nexus constructor to bypass this.</li>
+                <li><strong>CPE output contract</strong>: <code>CPE.evaluate()</code> returns exactly one output — never zero, never more than one. If all recommendations are suppressed, it returns a suppression notification, not an empty result.</li>
+                <li><strong>aiosqlite URI format</strong>: Use <code>file:/absolute/path/to/db.db</code> — not SQLAlchemy URLs. For in-memory: <code>file::memory:?cache=shared&mode=memory</code>.</li>
+            </ul>
+
+            <h3>Running the Tests</h3>
+            <p>
+                <code>pytest tests/ -x -q</code> — runs the full suite. All 220 tests must pass before any merge. The integration tests use a real temporary SQLite database per test module. The unit tests use mocks for the bus and gate functions.
+            </p>
+
+            <h3>Demo HTML</h3>
+            <p>
+                <code>demo.html</code> at the project root is a self-contained 257KB prototype. It runs entirely in the browser with no server. The demo simulates the CPE pipeline, price data, and storage math with hardcoded mock data. The production app will replace the mock data layer with real API calls.
+            </p>
+
+            <h3>Known Spec Deviations (Logged)</h3>
+            <p>
+                <code>specs/farmer-profile.md</code> originally contained a "Farmer State Machine" section with states <code>NEW/ACTIVE/INACTIVE/LANDED/ACTIVE_WITH_HISTORY</code>. This was spec decoration — no CPE gate used farmer operational state, and no implementation existed. The section was removed in Round 2 of the spec compliance audit.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- ===== SECTION 7: ROADMAP ===== -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">7</div>
+            <div class="section-title-group">
+                <div class="section-title">Development Roadmap</div>
+                <div class="section-subtitle">Three phases, one architecture</div>
+            </div>
+        </div>
+
+        <div class="phase-timeline">
+            <div class="phase-item">
+                <div class="phase-dot done"></div>
+                <div class="phase-label">Phase 1</div>
+                <div class="phase-name">Income Engine</div>
+                <div class="phase-date">Complete — May 2026</div>
+            </div>
+            <div class="phase-item">
+                <div class="phase-dot current"></div>
+                <div class="phase-label">Phase 2</div>
+                <div class="phase-name">Soil Engine</div>
+                <div class="phase-date">Q3 2026</div>
+            </div>
+            <div class="phase-item">
+                <div class="phase-dot future"></div>
+                <div class="phase-label">Phase 3</div>
+                <div class="phase-name">Climate Engine</div>
+                <div class="phase-date">Q4 2026</div>
+            </div>
+        </div>
+
+        <h2>Phase 1 — Income Engine (Complete)</h2>
+        <ul class="bullet-list">
+            <li>Obligation calendar with priority-based alerting</li>
+            <li>Cash flow health classification (DEFICIT / TIGHT / BALANCED / HEALTHY)</li>
+            <li>Live e-NAM mandi price integration</li>
+            <li>Selling vs. storage decision engine with full cost math</li>
+            <li>Emergency credit pathway (Ayushman Bharat PM-JAY)</li>
+            <li>Income ledger with distress sale detection and baseline pricing</li>
+            <li>Constraint Priority Engine with 5 suppression gates</li>
+            <li>220-passing integration test suite</li>
+            <li>Trilingual mobile prototype (EN / HI / MR)</li>
+        </ul>
+
+        <h2>Phase 2 — Soil Engine (Planned)</h2>
+        <ul class="bullet-list">
+            <li>Soil Health Card integration (FCO, 12 parameters)</li>
+            <li>NPK deficiency mapping by plot</li>
+            <li>Subsidized input recommendation engine</li>
+            <li>Fertilizer cost optimization calculator</li>
+            <li>Soil-engine CPE gates: suppress inputs when soil test already done</li>
+        </ul>
+
+        <h2>Phase 3 — Climate Engine (Planned)</h2>
+        <ul class="bullet-list">
+            <li>IMD weather API integration (district-level, 5-day forecast)</li>
+            <li>Pesticide spray window alerts (temperature + wind + rain)</li>
+            <li>Heavy rain / cyclone early warning (N Maharashtra)</li>
+            <li>Climate-engine CPE gates: suppress non-urgent recommendations during extreme weather windows</li>
+        </ul>
+    </div>
+
+
+    <!-- ===== SECTION 8: TECHNICAL SPECS ===== -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">8</div>
+            <div class="section-title-group">
+                <div class="section-title">Technical Specifications</div>
+                <div class="section-subtitle">API reference and data contracts</div>
+            </div>
+        </div>
+
+        <h2>API Endpoints</h2>
+        <table>
+            <thead>
+                <tr><th>Method</th><th>Path</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>POST</td><td>/api/farmers</td><td>Create farmer profile</td></tr>
+                <tr><td>GET</td><td>/api/farmers/{phone}</td><td>Get farmer by phone</td></tr>
+                <tr><td>PUT</td><td>/api/farmers/{phone}</td><td>Update farmer profile</td></tr>
+                <tr><td>DELETE</td><td>/api/farmers/{phone}</td><td>Soft delete farmer</td></tr>
+                <tr><td>POST</td><td>/api/farmers/{phone}/sales</td><td>Record a sale</td></tr>
+                <tr><td>GET</td><td>/api/farmers/{phone}/ledger</td><td>Get income ledger with baseline</td></tr>
+                <tr><td>GET</td><td>/api/farmers/{phone}/baseline</td><td>Get baseline price calculation</td></tr>
+                <tr><td>POST</td><td>/api/farmers/{phone}/obligations</td><td>Create obligation</td></tr>
+                <tr><td>GET</td><td>/api/farmers/{phone}/obligations</td><td>List obligations (filter by status)</td></tr>
+                <tr><td>GET</td><td>/api/farmers/{phone}/obligations/urgent</td><td>List obligations due within 7 days</td></tr>
+                <tr><td>PUT</td><td>/api/farmers/{phone}/obligations/{id}/reminder</td><td>Update reminder flag</td></tr>
+                <tr><td>DELETE</td><td>/api/farmers/{phone}/obligations/{id}</td><td>Mark obligation as paid</td></tr>
+                <tr><td>GET</td><td>/api/farmers/{phone}/cashflow</td><td>Compute 30-day cash flow health</td></tr>
+            </tbody>
+        </table>
+
+        <h2>CPE Constraint State Fields</h2>
+        <table>
+            <thead>
+                <tr><th>Gate</th><th>Field</th><th>Type</th><th>Values</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>G1</td><td>health_status</td><td>HealthStatus</td><td>NORMAL, CRISIS</td></tr>
+                <tr><td>G1</td><td>health_crisis_type</td><td>str</td><td>medical, crop_disease, livestock</td></tr>
+                <tr><td>G2</td><td>tenure_type</td><td>TenureType</td><td>OWNER, TENANT, LEASE, COMMUNITY</td></tr>
+                <tr><td>G2</td><td>requires_tenure_security</td><td>bool</td><td>true/false</td></tr>
+                <tr><td>G3</td><td>cash_flow_status</td><td>CashFlowStatus</td><td>SURPLUS, BALANCED, DEFICIT, EMERGENCY</td></tr>
+                <tr><td>G3</td><td>capital_intensity</td><td>str</td><td>low, medium, high</td></tr>
+                <tr><td>G4</td><td>selling_window</td><td>SellingWindow</td><td>OPEN, CLOSED</td></tr>
+                <tr><td>G4</td><td>harvest_within_7_days</td><td>bool</td><td>true/false</td></tr>
+                <tr><td>G5</td><td>time_criticality</td><td>TimeCriticality</td><td>IMMEDIATE, NEAR_TERM, MEDIUM_TERM, LONG_TERM</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Key Constants</h2>
+        <table>
+            <thead>
+                <tr><th>Constant</th><th>Value</th><th>Use</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>MSP_ONION</td><td>₹7.50/kg</td><td>Floor price reference</td></tr>
+                <tr><td>DISTRESS_THRESHOLD</td><td>₹637.50/quintal (MSP × 0.85)</td><td>Distress sale flag</td></tr>
+                <tr><td>STORAGE_COST_ONION</td><td>₹80/quintal/month</td><td>Storage math</td></tr>
+                <tr><td>QUALITY_LOSS_ONION</td><td>8%/month</td><td>Storage math</td></tr>
+                <tr><td>EMERGENCY_THRESHOLD</td><td>≤ −₹5,000 net position</td><td>Cash flow EMERGENCY classification</td></tr>
+                <tr><td>HEALTHY_THRESHOLD</td><td>&gt; ₹10,000 surplus, no obligations</td><td>Cash flow HEALTHY classification</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<!-- ===== CTA FOOTER ===== -->
+<div class="report" style="padding-bottom: 72px;">
+    <div class="cta-section">
+        <h2>KisanMitra — Ready for Field Validation</h2>
+        <p>
+            Phase 1 is complete and tested. The next step is a pilot with 50–100 farmers<br>in the Nashik onion corridor to validate the product experience and refine the CPE logic.
+        </p>
+        <div class="cta-buttons">
+            <a href="https://github.com/shobhit-16/KisanMitra" class="btn btn-primary" target="_blank">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                View on GitHub
+            </a>
+            <a href="https://github.com/shobhit-16/KisanMitra/blob/main/demo.html" class="btn btn-outline" target="_blank">
+                Open the Demo
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function showTab(tab, id) {
+        document.querySelectorAll('.audience-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.audience-section').forEach(s => s.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(id).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
